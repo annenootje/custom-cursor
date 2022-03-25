@@ -1,0 +1,70 @@
+.cursor-link {
+    cursor: none;
+}
+
+.cursor {
+    $size: 100px;
+
+    position: absolute;
+    left: calc(-#{$size} / 2);
+    top: calc(-#{$size} / 2);
+    z-index: 99;
+    pointer-events: none;
+
+    opacity: 0;
+    transition: opacity $transition;
+    
+    &__inner {
+        position: relative;
+
+        transform: scale(0);
+        transition: transform $transition;
+        
+        width: $size; 
+        height: $size; 
+        border-radius: 100%;
+    
+        background-color: black;
+    }
+
+    &__content {
+        @include absolute-cover;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        transform: scale(0);
+        transition: transform $transition;
+
+        padding: 15px;
+
+        font-size: 15px;
+        color: white;
+        text-align: center;
+        line-height: 1.2;
+
+        img {
+            display: block;
+
+            width: 15px;
+            margin-top: 7px;
+        }
+    }
+
+    &.-active {
+        opacity: 1;
+        
+        .cursor__inner {
+            transform: scale(1);
+        }
+        
+        &.-primary {
+            .-primary {
+                transform: scale(1);
+            }
+        }
+        
+    }
+}
